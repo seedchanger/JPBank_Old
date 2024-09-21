@@ -1,6 +1,6 @@
-﻿namespace JPBank.Models
+﻿namespace JPBank.Models.DbModels
 {
-    public class UserEntity
+    public class UserDbEntity
     {
         public int UserId { get; set; }
         public required string Name { get; set; }
