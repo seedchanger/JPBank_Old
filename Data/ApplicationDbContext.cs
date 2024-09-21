@@ -10,6 +10,6 @@ namespace JPBank.Data
             
         }
 
-        public DbSet<UserDbEntity> UsersDbSet { get; set; }
+        public DbSet<UserDbEntity> Tbl_Users { get; set; }
     }
 }
