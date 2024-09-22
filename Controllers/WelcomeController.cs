@@ -59,6 +59,7 @@ namespace JPBank.Controllers
             };
             await context.Tbl_Users.AddAsync(user);
             await context.SaveChangesAsync();
+            TempData["UserCreated"] = "You have successfully created an account. Please login with your credentials";
             return RedirectToAction("Login","Welcome");
         }
         #endregion
