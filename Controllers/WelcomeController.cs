@@ -46,21 +46,28 @@ namespace JPBank.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> CreateNewUser(SignupEntity signUpEntity)
+        public async Task<IActionResult> Signup(SignupEntity signUpEntity)
         {
-            var user = new UserDbEntity
+            if (ModelState.IsValid)
             {
-                Name = signUpEntity.Name,
-                Email = signUpEntity.Email,
-                Password = signUpEntity.Password,
-                UserType = (int)Constants.UserType.User,
-                IsActive = true,
-                CreatedOn = DateTime.Now
-            };
-            await context.Tbl_Users.AddAsync(user);
-            await context.SaveChangesAsync();
-            TempData["UserCreated"] = "You have successfully created an account. Please login with your credentials";
-            return RedirectToAction("Login","Welcome");
+                var user = new UserDbEntity
+                {
+                    Name = signUpEntity.Name,
+                    Email = signUpEntity.Email,
+                    Password = signUpEntity.Password,
+                    UserType = (int)Constants.UserType.User,
+                    IsActive = true,
+                    CreatedOn = DateTime.Now
+                };
+                await context.Tbl_Users.AddAsync(user);
+                await context.SaveChangesAsync();
+                TempData["UserCreated"] = "You have successfully created an account. Please login with your credentials";
+                return RedirectToAction("Login", "Welcome");
+            }
+            else
+            {
+                return View(signUpEntity);
+            }
         }
         #endregion
     }

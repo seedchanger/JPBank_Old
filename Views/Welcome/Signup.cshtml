@@ -10,12 +10,14 @@
             <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Future of banking</h1>
         </div>
         <div class="col-md-10 mx-auto col-lg-6">
-            <form asp-action="CreateNewUser" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            <form asp-action="Signup" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+                <div asp-validation-summary="All" /> @*For diplaying all validations messages *@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-3">
                             <input type="text" asp-for="Name" class="form-control" id="txtName" placeholder="John Doe">
                             <label for="txtName">Full Name</label>
+                            <span asp-validation-for="Name"/>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -30,8 +32,9 @@
                     <label for="txtPassword">Password</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="txtConfirmPw" placeholder="Password">
+                    <input type="password" asp-for="ConfirmPassword" class="form-control" id="txtConfirmPw" placeholder="Password">
                     <label for="txtConfirmPw">Confirm Password</label>
+                    <span asp-validation-for="ConfirmPassword" />
                 </div>
                 <div class="row">
                     <div class="col-md-6">
